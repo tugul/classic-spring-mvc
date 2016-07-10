@@ -1,5 +1,9 @@
 package com.infiniteskill.mvc.controllers;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +17,8 @@ public class ResourceController {
 
 	@RequestMapping("/add")
 	public String add(Model model){
+		List<String> options = new LinkedList<>(Arrays.asList("Material", "Other", "Staff", "Technics"));
+		model.addAttribute("typeOptions", options);
 		model.addAttribute("resourceAttr", new Resource());
 		return "resource_add";
 	}
