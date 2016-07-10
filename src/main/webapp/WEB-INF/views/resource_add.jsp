@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +25,8 @@
 			<h1>Resource</h1>
 		</div>
 		
-		<spring:url value="/resource/save"/>
-		<form action="<spring:url value="/resource/save"/>" method="POST">
+		<spring:url value="/resource/save" var="formUrl"/>
+		<form:form action="${formUrl}" modelAttribute="resourceAttr" method="POST">
 			
 			<div class="row">
 				
@@ -59,7 +60,7 @@
 
 			</div>
 		
-		</form>
+		</form:form>
 		
 	</div>
 </body>
