@@ -5,11 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.infiniteskill.mvc.data.entities.Project;
 import com.infiniteskill.mvc.data.services.ProjectService;
 
 @Controller
@@ -40,10 +42,11 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String saveProject(@RequestParam("projName") String name, HttpSession session){
-		System.out.println(session.getAttribute("token"));	// get the data back from session
-		System.out.println(name);							// print value in control named projName
+	public String saveProject(@ModelAttribute Project project){
+		// @ModelAttribute specifies DataBinding is to be used meaning that object project is mapped from 
+		// view file by matching each control's value in name tag with fields' name in Project class 
 		System.out.println("invoke saveProject");
+		System.out.println(project);
 		return "project_add";
 	}
 	
@@ -54,7 +57,9 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST, params={"type=multi", "special"})
-	public String saveSpecialProject(){
+	public String saveSpecialProject(@RequestParam("projName") String name, HttpSession session){
+		System.out.println(session.getAttribute("token"));	// get the data back from session
+		System.out.println(name);							// print value in control named 'name'		
 		System.out.println("invoke saveSpecialProject");
 		return "project_add";
 	}	
