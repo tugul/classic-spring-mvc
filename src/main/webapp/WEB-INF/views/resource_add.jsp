@@ -46,10 +46,15 @@
 				</div>
 
 				<div class="form-group">
-					<label for="unit">Unit of Measure</label> <input id="unit"
-						type="text" class="form-control" name="unitOfMeasure" />
+					<label for="unit">Unit of Measure</label> <br/> 
+					<form:radiobuttons path="unitOfMeasure" items="${radioOptions}"/>
 				</div>
 				
+				<div class="form-group">
+					<label for="unit">Indicators</label> <br/>
+					<form:checkboxes id="indicators" path="indicators" items="${checkOptions}"/>
+				</div>
+
 				<button type="submit" class="btn btn-default">Submit</button>
 
 			</div>
