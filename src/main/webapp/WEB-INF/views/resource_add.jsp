@@ -51,9 +51,15 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="unit">Indicators</label> <br/>
+					<label for="indicators">Indicators</label> <br/>
 					<form:checkboxes id="indicators" path="indicators" items="${checkOptions}"/>
 				</div>
+
+				<div class="form-group">
+					<label for="notes">Notes</label> <br/>
+					<form:textarea id="notes" path="notes" cssClass="form-control" rows="3" />
+				</div>
+
 
 				<button type="submit" class="btn btn-default">Submit</button>
 
