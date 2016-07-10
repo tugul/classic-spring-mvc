@@ -1,11 +1,14 @@
 package com.infiniteskill.mvc.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.infiniteskill.mvc.data.services.ProjectService;
 
@@ -30,13 +33,16 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addProject(){
+	public String addProject(HttpSession session){
+		session.setAttribute("token", "12345");		// set example data into session
 		System.out.println("invoke addProject");
 		return "project_add";
 	}
 
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String saveProject(){
+	public String saveProject(@RequestParam("projName") String name, HttpSession session){
+		System.out.println(session.getAttribute("token"));	// get the data back from session
+		System.out.println(name);							// print value in control named projName
 		System.out.println("invoke saveProject");
 		return "project_add";
 	}
