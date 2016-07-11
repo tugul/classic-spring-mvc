@@ -10,7 +10,7 @@ public class Project {
 
 	private String description;
 
-	private String sponsor;
+	private Sponsor sponsor;
 
 	private BigDecimal authorizedHours;
 
@@ -72,11 +72,11 @@ public class Project {
 	}
 
 
-	public String getSponsor() {
+	public Sponsor getSponsor() {
 		return sponsor;
 	}
 
-	public void setSponsor(String sponsor) {
+	public void setSponsor(Sponsor sponsor) {
 		this.sponsor = sponsor;
 	}
 

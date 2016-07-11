@@ -1,5 +1,7 @@
 package com.infiniteskill.mvc.controllers;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +37,18 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String addProject(HttpSession session){
+	public String addProject(Model model, HttpSession session){
 		session.setAttribute("token", "12345");		// set example data into session
 		System.out.println("invoke addProject");
+		
+		model.addAttribute("typeOptions", Arrays.asList("", "Single Year", "Multi Year"));
+		model.addAttribute("projectAttr", new Project());
+		
 		return "project_add";
 	}
 
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String saveProject(@ModelAttribute Project project){
+	public String saveProject(@ModelAttribute("projectAttr") Project project){
 		// @ModelAttribute specifies DataBinding is to be used meaning that object project is mapped from 
 		// view file by matching each control's value in name tag with fields' name in Project class 
 		System.out.println("invoke saveProject");
