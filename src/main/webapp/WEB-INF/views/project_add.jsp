@@ -37,12 +37,12 @@
 							
 				<div class="form-group">
 					<label for="sponsor-name">Sponsor Name</label>
-					<form:input id="sponsor" cssClass="form-control" path="project.sponsor.name"/>
+					<form:input id="sponsor" cssClass="form-control" path="sponsor.name"/>
 				</div>
 				
 				<div class="form-group">
-					<label for="sponsor">Sponsor Phone</label>
-					<form:input id="sponsor-phone" cssClass="form-control" path="project.sponsor.phone"/>
+					<label for="sponsor-phone">Sponsor Phone</label>
+					<form:input id="sponsor-phone" cssClass="form-control" path="sponsor.phone"/>
 				</div>
 				
 				<div class="form-group">
@@ -61,8 +61,23 @@
 				</div>
 			
 				<div class="form-group">
-					<label for="project-name">Description</label>
+					<label for="description">Description</label>
 					<form:textarea cssClass="form-control" path="description" rows="3"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="poc1">POC1</label>
+					<form:input id="poc1" cssClass="form-control" path="pointsOfContact[0]"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="poc2">POC2</label>
+					<form:input id="poc2" cssClass="form-control" path="pointsOfContact[1]"/>
+				</div>
+
+				<div class="form-group">
+					<label for="poc3">POC3</label>
+					<form:input id="poc3" cssClass="form-control" path="pointsOfContact[2]"/>
 				</div>
 				
 				<div class="form-group">
