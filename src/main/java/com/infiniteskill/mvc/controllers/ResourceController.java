@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -22,6 +23,12 @@ public class ResourceController {
 	public String add(Model model){
 		System.out.println("Invoking add()");
 		return "resource_add";
+	}
+	
+	@RequestMapping("/request")
+	@ResponseBody
+	public String request(@ModelAttribute("resourceAttr") Resource resource){
+		return "The request has been sent for approval";
 	}
 	
 	@ModelAttribute("resourceAttr")
