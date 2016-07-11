@@ -41,8 +41,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="cost">Cost</label> <input id="cost" type="text"
-						class="form-control" name="cost" />
+					<label for="cost">Cost</label> 
+					<form:input id="cost" cssClass="form-control" path="cost" />
 				</div>
 
 				<div class="form-group">
