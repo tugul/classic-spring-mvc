@@ -17,16 +17,27 @@ public class ResourceController {
 
 	@RequestMapping("/add")
 	public String add(Model model){
-		List<String> options = new LinkedList<>(Arrays.asList("Material", "Other", "Staff", "Technics"));
-		List<String> radios = new LinkedList<>(Arrays.asList("Hours", "Piece", "Tons"));
-		List<String> checks = new LinkedList<>(Arrays.asList("Lead Time", "Special Rate", "Requires Approval"));
-
-		model.addAttribute("typeOptions", options);
-		model.addAttribute("radioOptions", radios);
-		model.addAttribute("checkOptions", checks);
-		model.addAttribute("resourceAttr", new Resource());
-
 		return "resource_add";
+	}
+	
+	@ModelAttribute("resourceAttr")
+	public Resource getResource(){
+		return new Resource();
+	}
+	
+	@ModelAttribute("typeOptions")
+	public List<String> getTypeOptions(){
+		return new LinkedList<>(Arrays.asList("Material", "Other", "Staff", "Technics"));
+	}
+	
+	@ModelAttribute("radioOptions")
+	public List<String> getRadioOptions(){
+		return new LinkedList<>(Arrays.asList("Hours", "Piece", "Tons"));
+	}
+	
+	@ModelAttribute("checkOptions")
+	public List<String> getCheckOptions(){
+		return new LinkedList<>(Arrays.asList("Lead Time", "Special Rate", "Requires Approval"));
 	}
 
 	@RequestMapping("/save")
