@@ -3,8 +3,10 @@ package com.infiniteskill.mvc.data.entities;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.NotBlank;
 
+@XmlRootElement(name="project")
 public class Project {
 
 	private Long projectId;

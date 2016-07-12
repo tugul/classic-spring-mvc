@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infiniteskill.mvc.data.entities.Project;
 import com.infiniteskill.mvc.data.services.ProjectService;
@@ -28,6 +29,11 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
+	@RequestMapping(value="find/{projectId}")
+	public @ResponseBody Project findProjectObject(Model model, @PathVariable("projectId") Long projectId){
+		return this.projectService.find(projectId);
+	}
+
 	@RequestMapping(value="/{projectId}")
 	public String findProject(Model model, @PathVariable("projectId") Long projectId){
 		// Here path variable projectId is assigned to Long parameter projectId
