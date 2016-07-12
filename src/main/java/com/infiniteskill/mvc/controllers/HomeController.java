@@ -1,28 +1,22 @@
 package com.infiniteskill.mvc.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.infiniteskill.mvc.data.entities.Project;
-import com.infiniteskill.mvc.data.entities.Sponsor;
-import com.infiniteskill.mvc.data.services.ProjectService;
 
 @Controller
 public class HomeController {
 
-	@Autowired
-	private ProjectService service;
-
-	@RequestMapping(value = "/", params = "projectId")
-	public String goHomeAgain(Model model, @RequestParam("projectId") Long projectId) {
-		model.addAttribute("currentProject", service.find(projectId));
+	@RequestMapping(value = "/")
+	public String goHomeAgain(Model model, @ModelAttribute("project") Project project) {
+		model.addAttribute("currentProject", project);
 		return "home";
 	}
 
-	@RequestMapping("/")
+/*	@RequestMapping("/")
 	public String goHome(Model model){
 		Project project = new Project();
 		project.setName("First project");
@@ -31,6 +25,6 @@ public class HomeController {
 
 		model.addAttribute("currentProject", project);
 		return "welcome";
-	}
+	}*/
 
 }
