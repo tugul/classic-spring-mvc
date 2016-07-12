@@ -20,6 +20,13 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- This resolver will first attempts to resolve a request -->
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location" value="/WEB-INF/spring/views.xml"></property>
+		<!-- the lower order, the higher priority  -->
+		<property name="order" value="1"></property>		
+	</bean>
+	
 	<!-- ** means all sub structure -->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 

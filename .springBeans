@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/spring/application-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/dispatcher-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/views.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
