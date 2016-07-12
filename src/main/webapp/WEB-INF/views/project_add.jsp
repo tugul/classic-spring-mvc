@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -32,12 +31,12 @@
 
 				<div class="form-group">
 					<label for="project-type">Type</label>
-					<form:select path="type" items="${typeOptions}" cssClass="selectpicker"></form:select>
+					<form:select path="type" items="${typeOptions}" cssClass="selectpicker"/>
 				</div>
 							
 				<div class="form-group">
 					<label for="sponsor-name">Sponsor Name</label>
-					<form:input id="sponsor" cssClass="form-control" path="sponsor.name"/>
+					<form:input id="sponsor-name" cssClass="form-control" path="sponsor.name"/>
 				</div>
 				
 				<div class="form-group">
@@ -47,7 +46,7 @@
 				
 				<div class="form-group">
 					<label for="sponsor-email">Sponsor Email</label>
-					<form:input id="sponsor" cssClass="form-control" path="sponsor.email"/>
+					<form:input id="sponsor-email" cssClass="form-control" path="sponsor.email"/>
 				</div>
 			
 				<div class="form-group">
@@ -86,9 +85,7 @@
 				</div>
 			
 				<button type="submit" class="btn btn-default">Submit</button>
-	
 			</form:form>
-			
 		</div>
 	</div>
 </body>
