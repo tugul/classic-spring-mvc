@@ -3,7 +3,6 @@ package com.infiniteskill.mvc.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infiniteskill.mvc.data.entities.Project;
 import com.infiniteskill.mvc.data.entities.Sponsor;

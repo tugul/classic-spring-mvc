@@ -3,10 +3,14 @@ package com.infiniteskill.mvc.controllers;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.infiniteskill.mvc.data.entities.Project;
 import com.infiniteskill.mvc.data.services.ProjectService;
+import com.infiniteskill.mvc.data.validators.ProjectValidator;
 
 @Controller
 @RequestMapping("/project")
@@ -48,12 +53,23 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String saveProject(@ModelAttribute("projectAttr") Project project){
+	public String saveProject(@Valid @ModelAttribute("projectAttr") Project project, Errors errors){
 		// @ModelAttribute specifies DataBinding is to be used meaning that object project is mapped from 
 		// view file by matching each control's value in name tag with fields' name in Project class 
 		System.out.println("invoke saveProject");
+		
+		if (errors.hasErrors())
+			System.out.println("The project did not validate");
+		else 
+			System.out.println("The project validated!");
+			
 		System.out.println(project);
 		return "project_add";
+	}
+	
+	@InitBinder
+	public void init(WebDataBinder binder){
+		binder.addValidators(new ProjectValidator());
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST, params={"type=multi"})
