@@ -70,7 +70,7 @@ public class ProjectController {
 			System.out.println("The project validated!");
 			
 		System.out.println(project);
-		return "project_add";
+		return "redirect:/project/find";
 	}
 	
 	@InitBinder
