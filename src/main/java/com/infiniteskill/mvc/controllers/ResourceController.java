@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,16 @@ public class ResourceController {
 	@RequestMapping("/add")
 	public String add(Model model){
 		System.out.println("Invoking add()");
+		
+		if (true)
+			throw new RuntimeException("There was error triggerred by ResourceController");
+			
 		return "resource_add";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleExceptions(){
+		return "controller_error";
 	}
 	
 	@RequestMapping("/request")
