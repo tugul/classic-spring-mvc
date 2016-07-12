@@ -11,7 +11,7 @@ public class Project {
 
 	private String name;
 
-	@NotBlank
+	@NotBlank(message="The description must not be blank")
 	private String description;
 
 	private Sponsor sponsor;
