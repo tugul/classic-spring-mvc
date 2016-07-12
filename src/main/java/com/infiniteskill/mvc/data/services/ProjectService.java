@@ -30,6 +30,10 @@ public class ProjectService {
 			}).collect(Collectors.toList()).get(0);
 		}
 
+		public void save(Project project){
+			this.projects.add(project);
+		}
+
 		private Project createProject(String title, String description) {
 			Project project = new Project();
 			project.setName(title);
