@@ -11,6 +11,7 @@
 
 	<!-- specifies the package location to scan controller classes -->
 	<context:component-scan base-package="com.infiniteskill.mvc.controllers" />
+	<context:component-scan base-package="com.infiniteskill.mvc.resolvers"/>
 
 	<!-- specifies the location to look for view files -->
 	<bean id="viewResolver"

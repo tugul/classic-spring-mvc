@@ -31,7 +31,7 @@ public class ResourceController {
 		return "resource_add";
 	}
 	
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(NullPointerException.class)
 	public String handleExceptions(){
 		return "controller_error";
 	}
