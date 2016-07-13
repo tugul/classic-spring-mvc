@@ -54,6 +54,11 @@
 					<label for="funds">Authorized Funds</label>
 					<form:input id="funds" cssClass="form-control" path="authorizedFunds"/>
 				</div>
+				
+				<div class="form-group">
+					<label for="startDate">Start date (Julian)</label>
+					<form:input id="startDate" cssClass="form-control" path="startDate"/>
+				</div>
 			
 				<div class="form-group">
 					<label for="hours">Authorized Hours</label>
