@@ -12,6 +12,9 @@
 	<!-- it enables custom validation, map request, data binding ... -->
 	<mvc:annotation-driven conversion-service="conversion-service" />
 	
+	<!-- this bean supports file upload functionalities -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	
 	<bean id="conversion-service" class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">
 			<list>
