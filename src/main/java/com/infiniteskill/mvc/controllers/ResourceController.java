@@ -58,7 +58,7 @@ public class ResourceController {
 		return "redirect:/resource/review";
 	}
 	
-	@InitBinder
+	@InitBinder("resourceAttr")
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(new ResourceValidator());
 	}

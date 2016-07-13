@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.infiniteskill.mvc.data.entities.Project;
 import com.infiniteskill.mvc.data.services.ProjectService;
-import com.infiniteskill.mvc.data.validators.ProjectValidator;
 
 @Controller
 @RequestMapping("/project")
@@ -65,8 +62,10 @@ public class ProjectController {
 		// view file by matching each control's value in name tag with fields' name in Project class 
 		System.out.println("invoke saveProject");
 		
-		if (errors.hasErrors())
+		if (errors.hasErrors()){
 			System.out.println("The project did not validate");
+			return "project_add";
+		}
 		else 
 			System.out.println("The project validated!");
 			
@@ -76,11 +75,6 @@ public class ProjectController {
 		projectService.save(project);
 		attributes.addFlashAttribute("project", project);
 		return "redirect:/";
-	}
-	
-	@InitBinder
-	public void init(WebDataBinder binder){
-		binder.addValidators(new ProjectValidator());
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST, params={"type=multi"})
