@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,11 +17,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.infiniteskill.mvc.data.entities.Resource;
+import com.infiniteskill.mvc.data.services.ResourceService;
 
 @Controller
 @RequestMapping("/resource")
 @SessionAttributes("resourceAttr")
 public class ResourceController {
+	
+	@Autowired
+	private ResourceService service;
 
 	@RequestMapping("/add")
 	public String add(Model model){
@@ -29,6 +35,18 @@ public class ResourceController {
 			throw new RuntimeException("There was error triggerred by ResourceController");
 			
 		return "resource_add";
+	}
+	
+	@RequestMapping("/{resourceId}")
+	@ResponseBody
+	public Resource findResource(@PathVariable("resourceId") Long resourceId){
+		return service.find(resourceId);
+	}
+	
+	@RequestMapping("/find")
+	public String find(Model model){
+		model.addAttribute("resources", service.findAll());
+		return "resources";
 	}
 	
 	@ExceptionHandler(NullPointerException.class)
