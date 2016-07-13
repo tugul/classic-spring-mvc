@@ -8,6 +8,13 @@
 
 	<!-- it enables custom validation, map request, data binding ... -->
 	<mvc:annotation-driven />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<mvc:mapping path="/project/**"/>
+		<bean class="com.infiniteskill.mvc.interceptors.GlobalInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- specifies the package location to scan controller classes -->
 	<context:component-scan base-package="com.infiniteskill.mvc.controllers" />
