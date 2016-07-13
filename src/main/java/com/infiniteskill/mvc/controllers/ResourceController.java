@@ -4,20 +4,28 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.infiniteskill.mvc.data.entities.Resource;
 import com.infiniteskill.mvc.data.services.ResourceService;
+import com.infiniteskill.mvc.data.validators.ResourceValidator;
 
 @Controller
 @RequestMapping("/resource")
@@ -27,14 +35,32 @@ public class ResourceController {
 	@Autowired
 	private ResourceService service;
 
-	@RequestMapping("/add")
+	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String add(Model model){
 		System.out.println("Invoking add()");
 		
-		if (true)
-			throw new RuntimeException("There was error triggerred by ResourceController");
+//		if (true)
+//			throw new RuntimeException("There was error triggered by ResourceController");
 			
 		return "resource_add";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public String saveResource(@Valid @ModelAttribute("resourceAttr") Resource resource, Errors errors, RedirectAttributes attributes){
+		if (errors.hasErrors())
+			return "resource_add";
+		
+		System.out.println("The new resource validated!");
+		
+		resource.setResourceId(100L);
+		service.save(resource);
+		attributes.addFlashAttribute("project", resource);
+		return "redirect:/resource/review";
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new ResourceValidator());
 	}
 	
 	@RequestMapping("/{resourceId}")
@@ -94,6 +120,6 @@ public class ResourceController {
 		System.out.println(resource);
 		// After save, clear session attributes
 		status.setComplete();
-		return "redirect:/resource/add";
+		return "redirect:/resource/find";
 	}
 }

@@ -28,7 +28,7 @@
 			<h1>Resource</h1>
 		</div>
 		
-		<spring:url value="/resource/review" var="formUrl"/>
+		<spring:url value="/resource/add" var="formUrl"/>
 		<form:form action="${formUrl}" modelAttribute="resourceAttr" method="POST">
 			
 			<div class="row">
@@ -36,6 +36,7 @@
 				<div class="form-group">
 					<label for="resource-name">Name</label>
 					<form:input path="name" cssClass="form-control" id="resource-name"/> 
+					<form:errors path="name"/>
 				</div>
 
 				<div class="form-group">
@@ -46,6 +47,7 @@
 				<div class="form-group">
 					<label for="cost">Cost</label> 
 					<form:input id="cost" cssClass="form-control" path="cost" />
+					<form:errors path="cost"/>
 				</div>
 
 				<div class="form-group">
